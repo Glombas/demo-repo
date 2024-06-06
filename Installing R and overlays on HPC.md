@@ -1,4 +1,4 @@
-## Installing R and overlays with packages necessary for R scripts to run on the HPC
+# Installing R and overlays with packages necessary for R scripts to run on the HPC
 
 1. Log in to the HPC. STAY in your home folder where you have writable rights!! It won't let you do this installation anywhere else due to R library writing permission!
 
@@ -7,7 +7,7 @@
 ssh software 
 ```
 
-# Creating base R version 3.6
+## Creating base R version 3.6
 
 3. Create a “r.def” file
 ```
@@ -30,10 +30,10 @@ yum -y install which make gcc gcc-c++ libcurl-devel libxml2-devel openssl-devel 
 ```
 sudo singularity build r.img r.def
 ```
-# Create an overlay image file which will contain the R packages needed for analysis.
+## Create an overlay image file which will contain the R packages needed for analysis.
 - Default allowed overlay img size is 64Mb! Need to increase the allowed size if the packages take some space otherwise you will end up with an error "No space left on device"
 ```
-singularity overlay create --size 1024 r-tximport.img
+singularity overlay create --size 4096 r-tximport.img
 ```
 6. Now connect it to the base R image file which is version 3.6.0
 ```
@@ -59,7 +59,7 @@ EOF
 ```
 exit
 ```
-# If you have non-zero exit status for some packages due to missing dependencies, you need to install them as well. Just add it to the list of packages, before the desired one that needs it.
+### If you have non-zero exit status for some packages due to missing dependencies, you need to install them as well. Just add it to the list of packages, before the desired one that needs it.
 
 9. Afterwards, you may log out of the software node and move both R image files wherever you need.
 ```
@@ -73,7 +73,7 @@ singularity exec --overlay /jic/scratch/groups/Philippa-Borrill/scripts/R-3.6-al
 	# singularity exec --overlay: runs the overlay R image
 	# Rscript: basic command to run a Rscript in Linux environment 
 
-# If you are running a longer job, this needs to be part of a proper shell script for job submission
+### If you are running a longer job, this needs to be part of a proper shell script for job submission
 
 Example:
 
