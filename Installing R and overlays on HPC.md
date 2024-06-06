@@ -71,6 +71,7 @@ logout
 singularity exec --overlay /jic/scratch/groups/Philippa-Borrill/scripts/R-3.6-all.img /jic/scratch/groups/Philippa-Borrill/scripts/r-upd.img Rscript  YOUR_R_SCRIPT.R
 ```
 singularity exec --overlay: runs the overlay R image
+
 Rscript: basic command to run a Rscript in Linux environment 
 
 ### If you are running a longer job, this needs to be part of a proper shell script for job submission
